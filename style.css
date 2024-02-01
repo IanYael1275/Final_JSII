@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-body {
+body { 
     background-image: url('Elden-Ring-Header.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -13,32 +13,24 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
   }
-  
 
-.contenedor {
-	width: 90%;
-	max-width: 1000px;
-	margin: 40px auto 100px auto;
+main{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 4rem;
 
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 40px;
+}
+article{
+    backdrop-filter: blur(1000px);
+    margin: 1rem;
+    border-radius: .3rem;
+    padding: 1.6rem 1.6rem 0rem 1.6rem;
+}
+img{
+    border-radius: .5rem;
 }
 
-.contenedor  {
-	text-align: center;
-}
-
-.contenedor  {
-	font-size: 16px;
-	font-weight: 600;
-}
-
-.contenedor  {
-	width: 100%;
-	margin-bottom: 10px;
-	border-radius: 15px;
-}
 
 .paginas {
 	position: fixed;
