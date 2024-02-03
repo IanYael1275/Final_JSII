@@ -1,66 +1,44 @@
 
-function getCreatures(done){
-    const resultado=fetch('https://eldenring.fanapis.com/api/creatures');
-    resultado
-    .then(response=>response.json())
-    .then(data=>{
-        done(data)
-    });
 
 
+
+//respuesta dependiendo del servidor
+function getCreatures(done) {
+    const results = fetch("https://eldenring.fanapis.com/api/creatures?limit=100");
+
+    results
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.success && Array.isArray(data.data)) {
+                done(data.data);
+            } else {
+                console.error("La respuesta de la API no tiene la estructura esperada.");
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener datos:", error);
+        });
 }
 
-/*getCreatures(data=>{ 
-    console.log(data);
-});*/
+//Acomoda los datos para mostrarlos en la pagina 
+getCreatures(creatures => {
+    if (Array.isArray(creatures)) {
+        creatures.forEach(creature => {
+            const article = document.createRange().createContextualFragment(
+                `<article>
+                    <h2>${creature.name}</h2>
+                    <img src="${creature.image}" alt="${creature.name}">
+                    <p>${`"`}${creature.description}${`"`}</p>
+                    <p>Location: ${creature.location}</p>
+                    <p>Drops: ${creature.drops}</p>
+                </article>`
+            );
 
+            const main = document.querySelector("main");
 
-getCreatures(data=>{
-    data.results.forEach(Creatures=>{
-        const article=document.createRange().createContextualFragment(`
-        <article>
-            <div class="imagen">
-            <img src="${Creatures.image}" alt="Criatura">
-            </div>
-            <h2>${Creatures.name}</h2>
-            <span>${Creatures.id}<span>
-        </article>
-        `);
-        const main=document.querySelector("main");
-        main.append(article);
-    });
-});
-
-
-
-
-
-
-
-
-
-
-// En caso de ser valida la peticion muestra los datos en consola
-/*const cargarMonstruos=async()=>{
-    try{
-        const respuesta= await fetch('https://eldenring.fanapis.com/api/creatures?limit=80');
-        console.log(respuesta);
-
-        if(respuesta.status===200){
-            const info=await respuesta.json();
-            console.log(info); 
-            
-
-        } else if(respuesta.status===404){
-            console.log('Han desaparecido los servidores con magia, intenta de nuevo');
-        } else{
-            console.log('Entro a tierras desconocidas, intente de nuevo');
-        }
-        
-    } catch(error){
-        console.log(error);
+            main.append(article);
+        });
+    } else {
+        console.error("No se pudo obtener datos válidos para mostrar.");
     }
-   
-}
-
-cargarMonstruos();*/
+});

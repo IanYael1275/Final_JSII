@@ -19,49 +19,30 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 4rem;
-
+	width: 90%;
+	height: 100%;
+	max-width: 100%;
+	text-align: center;
 }
+
 article{
     backdrop-filter: blur(1000px);
     margin: 1rem;
     border-radius: .3rem;
-    padding: 1.6rem 1.6rem 0rem 1.6rem;
+    padding: 1rem 1.6rem 0rem 1.6rem;
+	
+}
+h2{
+	padding-bottom: .5rem;
 }
 img{
     border-radius: .5rem;
+	max-width: 50%;
+	max-height: 50%;
 }
-
-
-.paginas {
-	position: fixed;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.445);
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	padding: 10px;
-}
-
-.paginas button {
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	height: 50px;
-	width: 200px;
-	background: #131313a9;
-	color: #fff;
-	border-radius: 100px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 600;
-	transition: .3s ease all;
-    border-color: rgb(171,150,111) ;
-}
-
-.paginas button:hover {
-	background: #3f3f3fcc;
-    color: black;
-    font-size: large;
+p{
+	padding-top: .3rem;
+	padding-bottom: .3rem;
+	text-align: justify;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
